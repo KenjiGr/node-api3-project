@@ -20,25 +20,23 @@ async function validateUserId(req, res, next) {
   // DO YOUR MAGIC
 }
 
-async function validateUser(req, res, next) {
+function validateUser(req, res, next) {
   // DO YOUR MAGIC
-  try{
-    if(!req.body.name || !req.body.name.trim()){
-      next({status: 400, message: 'missing required name field'});
-    }
-  }catch (err){
-    next(err)
+  const { name } = req.body;
+  if (!name) {
+    res.status(400).json({ message: 'missing required name field' });
+  } else {
+    next();
   }
 }
 
 function validatePost(req, res, next) {
   // DO YOUR MAGIC
-  try{
-    if(!req.body.text || !req.body.text.trim()){
-      next({status: 400, message: 'missing required text field'});
-    }
-  }catch (err){
-    next(err)
+  const { text } = req.body;
+  if (!text) {
+    res.status(400).json({ message: 'missing required text field' });
+  } else {
+    next();
   }
 }
 
